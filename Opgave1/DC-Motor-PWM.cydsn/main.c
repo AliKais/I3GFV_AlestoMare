@@ -96,16 +96,22 @@ void handleByteReceived(uint8_t byteReceived)
 void decreaseSpeed()
 {
     UART_1_PutString("Decreasing speed\r\n");
+    
+    PWM_1_WriteCompare(PWM_1_ReadCompare() + 5);
 }
 
 void increaseSpeed()
 {
     UART_1_PutString("Increasing speed\r\n");
+    
+    PWM_1_WriteCompare(PWM_1_ReadCompare() + 5);
 }
 
 void driveForwards()
 {
     UART_1_PutString("Set direction: forwards\r\n");
+    
+    
 }
 
 void driveBackwards()
