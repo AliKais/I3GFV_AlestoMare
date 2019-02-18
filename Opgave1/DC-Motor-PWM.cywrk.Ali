@@ -57,6 +57,7 @@
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Clock_PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\cy_boot</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\isr_uart_rx</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Pin_PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\PWM_1</v>
@@ -102,6 +103,35 @@
 <ExpandedNodeIds>
 <v>DC-Motor-PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_uart_rx.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_INT.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_PM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.elf</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.hex</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.map</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM.gpdsc</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM.rpt</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM_timing.html</v>
@@ -109,6 +139,35 @@
 <VisibleNodeIds>
 <v>DC-Motor-PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_uart_rx.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_INT.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_PM.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.elf</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.hex</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\DC-Motor-PWM.map</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM.gpdsc</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM.rpt</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\DC-Motor-PWM_timing.html</v>
@@ -165,7 +224,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 721" SelectedTabbedMdiWindow="d96c3b12-7177-49ab-b830-7f2cdd4cbc44"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4f66cb58-a25a-4b1b-9a4c-1bc61a88a38f" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\DC-Motor-PWM\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" Guid="19ea0e6a-3fb5-4716-8dc4-1ffaca08bc57" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\DC-Motor-PWM\DC-Motor-PWM.cydsn\main.c" Guid="d96c3b12-7177-49ab-b830-7f2cdd4cbc44" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 721" SelectedTabbedMdiWindow="6bbd4d07-622a-4ea6-9f64-0f23ce5c7c3e"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4f66cb58-a25a-4b1b-9a4c-1bc61a88a38f" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" Guid="df2c53c8-b60b-4435-9559-783b0fdd5113" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\main.c" Guid="6bbd4d07-622a-4ea6-9f64-0f23ce5c7c3e" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

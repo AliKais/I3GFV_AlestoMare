@@ -34,6 +34,8 @@ int main(void)
     UART_1_PutString("2: Drive backwards\r\n");
     UART_1_PutString("q: Decrease speed\r\n");
     UART_1_PutString("w: Increase speed\r\n");
+    
+    
 
     for(;;)
     {
@@ -97,7 +99,7 @@ void decreaseSpeed()
 {
     UART_1_PutString("Decreasing speed\r\n");
     
-    PWM_1_WriteCompare(PWM_1_ReadCompare() + 5);
+    PWM_1_WriteCompare(PWM_1_ReadCompare() - 5);
 }
 
 void increaseSpeed()
@@ -109,9 +111,7 @@ void increaseSpeed()
 
 void driveForwards()
 {
-    UART_1_PutString("Set direction: forwards\r\n");
-    
-    
+    UART_1_PutString("Set direction: forwards\r\n");        
 }
 
 void driveBackwards()
@@ -122,6 +122,8 @@ void driveBackwards()
 void stop()
 {
     UART_1_PutString("Stop\r\n");
+    
+    PWM_1_WriteCompare(0);
 }
 
 /* [] END OF FILE */
