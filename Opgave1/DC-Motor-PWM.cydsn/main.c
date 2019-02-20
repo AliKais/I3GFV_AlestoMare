@@ -34,8 +34,7 @@ int main(void)
     UART_1_PutString("2: Drive backwards\r\n");
     UART_1_PutString("q: Decrease speed\r\n");
     UART_1_PutString("w: Increase speed\r\n");
-    
-    
+       
 
     for(;;)
     {
@@ -111,12 +110,18 @@ void increaseSpeed()
 
 void driveForwards()
 {
-    UART_1_PutString("Set direction: forwards\r\n");        
+    UART_1_PutString("Set direction: forwards\r\n");   
+    
+    Pin_Out1_Write(0xFF);
+    Pin_Out2_Write(0);
 }
 
 void driveBackwards()
 {
     UART_1_PutString("Set direction: backwards\r\n");
+    
+    Pin_Out1_Write(0);
+    Pin_Out2_Write(0xFF);
 }
 
 void stop()

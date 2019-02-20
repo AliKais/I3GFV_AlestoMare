@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="DC-Motor-PWM\DC-Motor-PWM\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>DC-Motor-PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM</v>
@@ -59,6 +59,8 @@
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\cy_boot</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\isr_uart_rx</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Pin_Out1</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Pin_Out2</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\Pin_PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\PWM_1</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\UART_1</v>
@@ -82,7 +84,6 @@
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\cyfitteriar.inc</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\cymetadata.c</v>
-<v>DC-Motor-PWM\DC-Motor-PWM\Generated_Source\PSoC5\project.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -121,6 +122,8 @@
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_uart_rx.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Out1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Out2.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
@@ -157,6 +160,8 @@
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_uart_rx.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Out1.lst</v>
+<v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Out2.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_PWM.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
 <v>DC-Motor-PWM\DC-Motor-PWM\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>

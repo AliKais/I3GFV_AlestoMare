@@ -1,6 +1,6 @@
-C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\DC-Motor-PWM.cyprj|2b9cde76-37a1-4485-8fc8-edc3c2243757
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6c81b7bd-2694-400f-b367-0d1e637aaff8
-C:\Users\Ali\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|a480c062-b8c4-4564-ab2a-bf3bf6f3cf9e
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|0d88200c-5b7c-4818-b673-c18e74b3c26b
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f7494f96-931f-4478-8b10-3d36eb8687ab
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|346a25c4-12fe-4d5f-978a-43a91c7e1c7e
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|fca451c6-69ea-4e8d-ab64-99d7e1997e57
+C:\Users\Ali\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|1b384356-0019-4a57-b902-9a51eaacde5c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|910f4dd4-30f9-4580-85f0-c7991a8477a7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|eb101cd4-f9c0-4a9c-98dd-756638ef79aa
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f62376d8-5363-465f-ac96-7a92afe3ac66
+C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\DC-Motor-PWM.cyprj|81a3b7b1-64da-48b7-8ad8-14d23ec026ad
