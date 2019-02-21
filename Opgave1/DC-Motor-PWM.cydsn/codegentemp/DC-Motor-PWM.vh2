@@ -2,7 +2,7 @@
 --	Conversion of DC-Motor-PWM.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Feb 20 23:51:32 2019
+--	Thu Feb 21 10:10:01 2019
 --
 
 USE cypress.cypress.all;
