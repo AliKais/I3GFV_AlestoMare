@@ -36,8 +36,7 @@ int main(void)
     UART_1_PutString("w: Increase speed\r\n");
     
     Pin_Out1_Write(0xFF);
-    Pin_Out2_Write(0);
-       
+    Pin_Out2_Write(0);       
 
     for(;;)
     {
@@ -61,6 +60,7 @@ CY_ISR(ISR_UART_rx_handler)
 
 void handleByteReceived(uint8_t byteReceived)
 {
+    //Switch funktionen herunder bruges til at kunne kalde de forskellige fukntioner ud fra tasterne på PC'en ved hjælp af UART
     switch(byteReceived)
     {
         case 'q' :
@@ -101,6 +101,7 @@ void decreaseSpeed()
 {
     UART_1_PutString("Decreasing speed\r\n");
     
+    //Her minuser vi PWM signalet med 5%
     PWM_1_WriteCompare(PWM_1_ReadCompare() - 5);
 }
 
@@ -108,6 +109,7 @@ void increaseSpeed()
 {
     UART_1_PutString("Increasing speed\r\n");
     
+    //Her pluser vi PWM signalet med 5%
     PWM_1_WriteCompare(PWM_1_ReadCompare() + 5);
 }
 
@@ -115,7 +117,11 @@ void driveForwards()
 {
     UART_1_PutString("Set direction: forwards\r\n");   
     
+    //For at motoren køre frem
+    
+    //Pin_Out1 sættes høj
     Pin_Out1_Write(0xFF);
+    //Pin_Out2 sættes lavt
     Pin_Out2_Write(0);
 }
 
@@ -123,7 +129,11 @@ void driveBackwards()
 {
     UART_1_PutString("Set direction: backwards\r\n");
     
-    Pin_Out1_Write(0);
+    //For at motoren køre tilbage
+    
+    //Pin_Out1 sættes lav
+    Pin_Out1_Write(0);    
+    //Pin_Out2 sættes højt
     Pin_Out2_Write(0xFF);
 }
 
@@ -131,6 +141,7 @@ void stop()
 {
     UART_1_PutString("Stop\r\n");
     
+    //Her sætter vi PWM signalet til 0%, sådan motoren stopper
     PWM_1_WriteCompare(0);
 }
 
