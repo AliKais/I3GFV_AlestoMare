@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="DC-Motor-PWM\DC-Motor-PWM\Source Files\main.c">
 <ExpandedNodeIds>
 <v>DC-Motor-PWM</v>
 <v>DC-Motor-PWM\DC-Motor-PWM</v>
@@ -220,8 +220,8 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" />
 <name v=".\DC-Motor-PWM.cydsn\main.c" />
+<name v=".\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" />
 <name v=".\DC-Motor-PWM.cydsn\TopDesign\TopDesign.cysch" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
@@ -230,7 +230,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 721" SelectedTabbedMdiWindow="6bbd4d07-622a-4ea6-9f64-0f23ce5c7c3e"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4f66cb58-a25a-4b1b-9a4c-1bc61a88a38f" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" Guid="df2c53c8-b60b-4435-9559-783b0fdd5113" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\main.c" Guid="6bbd4d07-622a-4ea6-9f64-0f23ce5c7c3e" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Opgave1\DC-Motor-PWM.cydsn\TopDesign\TopDesign.cysch" Guid="6400fa70-e845-4ddc-b96b-18a78a3f71d1" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1380, 649" SelectedTabbedMdiWindow="ffed16b0-aa5c-4ac5-b7e0-e0443ec0a25d"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4f66cb58-a25a-4b1b-9a4c-1bc61a88a38f" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 1\Opgave1\DC-Motor-PWM.cydsn\main.c" Guid="ffed16b0-aa5c-4ac5-b7e0-e0443ec0a25d" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 1\Opgave1\DC-Motor-PWM.cydsn\DC-Motor-PWM.cydwr" Guid="fc63ba2e-9001-4de3-85f6-7c6fa1f652bf" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 1\Opgave1\DC-Motor-PWM.cydsn\TopDesign\TopDesign.cysch" Guid="c6cd6181-336d-4188-b9ad-5489c6fcc268" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
