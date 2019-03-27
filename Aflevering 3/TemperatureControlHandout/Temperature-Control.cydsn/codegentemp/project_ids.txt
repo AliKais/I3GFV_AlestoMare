@@ -1,0 +1,6 @@
+C:\Users\Abdallah Ajjawi\Desktop\AU\TemperatureControlHandout\Temperature-Control.cydsn\Temperature-Control.cyprj|79c3586a-d5e6-4b59-befd-17b9c11b7d22
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|c7c33049-68db-4166-a09b-78de21696fbb
+C:\Users\Abdallah Ajjawi\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|4d22a05b-6724-4669-b43c-96cb3de899ea
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|211d2782-4923-4b1f-b1d7-69ac40d82b0f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|989db7f3-e56c-484f-8008-35634fee8969
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1936d250-98e7-4f1f-9bd5-e7dfc411bfdf

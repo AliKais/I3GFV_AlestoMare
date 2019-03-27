@@ -1,0 +1,1275 @@
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"PIDControl.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.PIDControl_init,"ax",%progbits
+  20              		.align	2
+  21              		.global	PIDControl_init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	PIDControl_init, %function
+  25              	PIDControl_init:
+  26              	.LFB0:
+  27              		.file 1 "PIDControl.c"
+   1:PIDControl.c  **** /* ========================================
+   2:PIDControl.c  ****  *
+   3:PIDControl.c  ****  * Copyright YOUR COMPANY, THE YEAR
+   4:PIDControl.c  ****  * All Rights Reserved
+   5:PIDControl.c  ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:PIDControl.c  ****  *
+   7:PIDControl.c  ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:PIDControl.c  ****  * WHICH IS THE PROPERTY OF your company.
+   9:PIDControl.c  ****  *
+  10:PIDControl.c  ****  * ========================================
+  11:PIDControl.c  **** */
+  12:PIDControl.c  **** #include "PIDControl.h"
+  13:PIDControl.c  **** 
+  14:PIDControl.c  **** static float Kp = 0;
+  15:PIDControl.c  **** static float Ki = 0;
+  16:PIDControl.c  **** static float Kd = 0;
+  17:PIDControl.c  **** static float dt = 0;
+  18:PIDControl.c  **** static float integralMax = 0;
+  19:PIDControl.c  **** static float integralMin = 0;
+  20:PIDControl.c  **** static volatile float setPoint = 0;
+  21:PIDControl.c  **** static float integral = 0;
+  22:PIDControl.c  **** static float previousError = 0;
+  23:PIDControl.c  **** 
+  24:PIDControl.c  **** void PIDControl_init(float _Kp, float _Ki, float _Kd, float _integralMax, float _integralMin, float
+  25:PIDControl.c  **** {
+  28              		.loc 1 25 0
+  29              		.cfi_startproc
+  30              		@ args = 8, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 2
+
+
+  33              	.LVL0:
+  34 0000 10B4     		push	{r4}
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 4, -4
+  26:PIDControl.c  ****     Kp = _Kp;
+  37              		.loc 1 26 0
+  38 0002 054C     		ldr	r4, .L3
+  39 0004 2060     		str	r0, [r4]	@ float
+  27:PIDControl.c  ****     Ki = _Ki;
+  40              		.loc 1 27 0
+  41 0006 6160     		str	r1, [r4, #4]	@ float
+  28:PIDControl.c  ****     Kd = _Kd;
+  42              		.loc 1 28 0
+  43 0008 A260     		str	r2, [r4, #8]	@ float
+  29:PIDControl.c  ****     integralMax = _integralMax;
+  44              		.loc 1 29 0
+  45 000a E360     		str	r3, [r4, #12]	@ float
+  30:PIDControl.c  ****     integralMin = _integralMin;
+  46              		.loc 1 30 0
+  47 000c 019B     		ldr	r3, [sp, #4]	@ float
+  48              	.LVL1:
+  49 000e 2361     		str	r3, [r4, #16]	@ float
+  31:PIDControl.c  ****     dt = _dt;
+  50              		.loc 1 31 0
+  51 0010 029B     		ldr	r3, [sp, #8]	@ float
+  52 0012 6361     		str	r3, [r4, #20]	@ float
+  32:PIDControl.c  **** }
+  53              		.loc 1 32 0
+  54 0014 10BC     		pop	{r4}
+  55              		.cfi_restore 4
+  56              		.cfi_def_cfa_offset 0
+  57              	.LVL2:
+  58 0016 7047     		bx	lr
+  59              	.L4:
+  60              		.align	2
+  61              	.L3:
+  62 0018 00000000 		.word	.LANCHOR0
+  63              		.cfi_endproc
+  64              	.LFE0:
+  65              		.size	PIDControl_init, .-PIDControl_init
+  66              		.section	.text.PIDControl_changeSetPoint,"ax",%progbits
+  67              		.align	2
+  68              		.global	PIDControl_changeSetPoint
+  69              		.thumb
+  70              		.thumb_func
+  71              		.type	PIDControl_changeSetPoint, %function
+  72              	PIDControl_changeSetPoint:
+  73              	.LFB1:
+  33:PIDControl.c  **** 
+  34:PIDControl.c  **** void PIDControl_changeSetPoint(float _setPoint)
+  35:PIDControl.c  **** {
+  74              		.loc 1 35 0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 0
+  77              		@ frame_needed = 0, uses_anonymous_args = 0
+  78              		@ link register save eliminated.
+  79              	.LVL3:
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 3
+
+
+  36:PIDControl.c  ****     setPoint = _setPoint;
+  80              		.loc 1 36 0
+  81 0000 014B     		ldr	r3, .L6
+  82 0002 9861     		str	r0, [r3, #24]	@ float
+  83 0004 7047     		bx	lr
+  84              	.L7:
+  85 0006 00BF     		.align	2
+  86              	.L6:
+  87 0008 00000000 		.word	.LANCHOR0
+  88              		.cfi_endproc
+  89              	.LFE1:
+  90              		.size	PIDControl_changeSetPoint, .-PIDControl_changeSetPoint
+  91              		.global	__aeabi_fsub
+  92              		.global	__aeabi_fmul
+  93              		.global	__aeabi_fadd
+  94              		.global	__aeabi_fcmpgt
+  95              		.global	__aeabi_fcmplt
+  96              		.global	__aeabi_fdiv
+  97              		.section	.text.PIDControl_doStep,"ax",%progbits
+  98              		.align	2
+  99              		.global	PIDControl_doStep
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.type	PIDControl_doStep, %function
+ 103              	PIDControl_doStep:
+ 104              	.LFB2:
+  37:PIDControl.c  **** }
+  38:PIDControl.c  **** 
+  39:PIDControl.c  **** float PIDControl_doStep(float systemOutput, float* proportionalPart, float* integralPart, float* de
+  40:PIDControl.c  **** {
+ 105              		.loc 1 40 0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 8
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              	.LVL4:
+ 110 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 111              		.cfi_def_cfa_offset 36
+ 112              		.cfi_offset 4, -36
+ 113              		.cfi_offset 5, -32
+ 114              		.cfi_offset 6, -28
+ 115              		.cfi_offset 7, -24
+ 116              		.cfi_offset 8, -20
+ 117              		.cfi_offset 9, -16
+ 118              		.cfi_offset 10, -12
+ 119              		.cfi_offset 11, -8
+ 120              		.cfi_offset 14, -4
+ 121 0004 83B0     		sub	sp, sp, #12
+ 122              		.cfi_def_cfa_offset 48
+ 123 0006 8A46     		mov	r10, r1
+ 124 0008 9146     		mov	r9, r2
+ 125 000a 9846     		mov	r8, r3
+ 126              	.LVL5:
+  41:PIDControl.c  ****     float output = 0;
+  42:PIDControl.c  ****     float proportional = 0;
+  43:PIDControl.c  ****     float derivative = 0;
+  44:PIDControl.c  ****     float currentError = 0;
+  45:PIDControl.c  ****     
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 4
+
+
+  46:PIDControl.c  ****     // calculate current error
+  47:PIDControl.c  ****     currentError = setPoint - systemOutput;
+ 127              		.loc 1 47 0
+ 128 000c 2D4C     		ldr	r4, .L19
+ 129 000e A369     		ldr	r3, [r4, #24]	@ float
+ 130              	.LVL6:
+ 131 0010 0146     		mov	r1, r0
+ 132              	.LVL7:
+ 133 0012 1846     		mov	r0, r3
+ 134              	.LVL8:
+ 135 0014 FFF7FEFF 		bl	__aeabi_fsub
+ 136              	.LVL9:
+ 137 0018 0546     		mov	r5, r0
+ 138              	.LVL10:
+  48:PIDControl.c  ****     
+  49:PIDControl.c  ****     // calculate proportional part
+  50:PIDControl.c  ****     proportional = currentError;
+  51:PIDControl.c  ****     
+  52:PIDControl.c  ****     // calculate integral part
+  53:PIDControl.c  ****     integral = integral + (currentError * dt);
+ 139              		.loc 1 53 0
+ 140 001a 6669     		ldr	r6, [r4, #20]	@ float
+ 141 001c 3146     		mov	r1, r6
+ 142 001e FFF7FEFF 		bl	__aeabi_fmul
+ 143              	.LVL11:
+ 144 0022 E169     		ldr	r1, [r4, #28]	@ float
+ 145 0024 FFF7FEFF 		bl	__aeabi_fadd
+ 146              	.LVL12:
+ 147 0028 E061     		str	r0, [r4, #28]	@ float
+  54:PIDControl.c  ****     
+  55:PIDControl.c  ****     // limit the integral
+  56:PIDControl.c  ****     if (integral > integralMax) integral = integralMax;
+ 148              		.loc 1 56 0
+ 149 002a E468     		ldr	r4, [r4, #12]	@ float
+ 150 002c 2146     		mov	r1, r4
+ 151 002e FFF7FEFF 		bl	__aeabi_fcmpgt
+ 152              	.LVL13:
+ 153 0032 08B1     		cbz	r0, .L9
+ 154              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 155 0034 234B     		ldr	r3, .L19
+ 156 0036 DC61     		str	r4, [r3, #28]	@ float
+ 157              	.L9:
+  57:PIDControl.c  ****     if (integral < integralMin) integral = integralMin;
+ 158              		.loc 1 57 0 is_stmt 1
+ 159 0038 224B     		ldr	r3, .L19
+ 160 003a 1C69     		ldr	r4, [r3, #16]	@ float
+ 161 003c 2146     		mov	r1, r4
+ 162 003e D869     		ldr	r0, [r3, #28]	@ float
+ 163 0040 FFF7FEFF 		bl	__aeabi_fcmplt
+ 164              	.LVL14:
+ 165 0044 08B1     		cbz	r0, .L11
+ 166              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 167 0046 1F4B     		ldr	r3, .L19
+ 168 0048 DC61     		str	r4, [r3, #28]	@ float
+ 169              	.L11:
+  58:PIDControl.c  ****     
+  59:PIDControl.c  ****     // calculate derivative part
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 5
+
+
+  60:PIDControl.c  ****     derivative = (currentError - previousError) / dt;
+ 170              		.loc 1 60 0 is_stmt 1
+ 171 004a 1E4C     		ldr	r4, .L19
+ 172 004c 216A     		ldr	r1, [r4, #32]	@ float
+ 173 004e 2846     		mov	r0, r5
+ 174 0050 FFF7FEFF 		bl	__aeabi_fsub
+ 175              	.LVL15:
+ 176 0054 3146     		mov	r1, r6
+ 177 0056 FFF7FEFF 		bl	__aeabi_fdiv
+ 178              	.LVL16:
+ 179 005a 8346     		mov	fp, r0
+ 180              	.LVL17:
+  61:PIDControl.c  ****     
+  62:PIDControl.c  ****     output = proportional * Kp + integral * Ki + derivative * Kd;
+ 181              		.loc 1 62 0
+ 182 005c 2168     		ldr	r1, [r4]	@ float
+ 183 005e 2846     		mov	r0, r5
+ 184              	.LVL18:
+ 185 0060 FFF7FEFF 		bl	__aeabi_fmul
+ 186              	.LVL19:
+ 187 0064 0746     		mov	r7, r0
+ 188 0066 6168     		ldr	r1, [r4, #4]	@ float
+ 189 0068 E069     		ldr	r0, [r4, #28]	@ float
+ 190 006a FFF7FEFF 		bl	__aeabi_fmul
+ 191              	.LVL20:
+ 192 006e 0646     		mov	r6, r0
+ 193 0070 0146     		mov	r1, r0
+ 194 0072 3846     		mov	r0, r7
+ 195 0074 FFF7FEFF 		bl	__aeabi_fadd
+ 196              	.LVL21:
+ 197 0078 0190     		str	r0, [sp, #4]	@ float
+ 198 007a A168     		ldr	r1, [r4, #8]	@ float
+ 199 007c 5846     		mov	r0, fp
+ 200 007e FFF7FEFF 		bl	__aeabi_fmul
+ 201              	.LVL22:
+ 202 0082 0446     		mov	r4, r0
+ 203 0084 0146     		mov	r1, r0
+ 204 0086 0198     		ldr	r0, [sp, #4]	@ float
+ 205 0088 FFF7FEFF 		bl	__aeabi_fadd
+ 206              	.LVL23:
+ 207 008c 8346     		mov	fp, r0
+ 208              	.LVL24:
+  63:PIDControl.c  ****     *proportionalPart = proportional * Kp;
+ 209              		.loc 1 63 0
+ 210 008e CAF80070 		str	r7, [r10]	@ float
+  64:PIDControl.c  ****     *integralPart = integral * Ki;
+ 211              		.loc 1 64 0
+ 212 0092 C9F80060 		str	r6, [r9]	@ float
+  65:PIDControl.c  ****     *derivativePart = derivative * Kd;
+ 213              		.loc 1 65 0
+ 214 0096 C8F80040 		str	r4, [r8]	@ float
+  66:PIDControl.c  ****     
+  67:PIDControl.c  ****     if (output > 100)
+ 215              		.loc 1 67 0
+ 216 009a 0B49     		ldr	r1, .L19+4
+ 217 009c FFF7FEFF 		bl	__aeabi_fcmpgt
+ 218              	.LVL25:
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 6
+
+
+ 219 00a0 28B9     		cbnz	r0, .L14
+  68:PIDControl.c  ****         {
+  69:PIDControl.c  ****             output = 100;
+  70:PIDControl.c  ****         }
+  71:PIDControl.c  ****     else if (output < 0)
+ 220              		.loc 1 71 0
+ 221 00a2 0021     		movs	r1, #0
+ 222 00a4 5846     		mov	r0, fp
+ 223 00a6 FFF7FEFF 		bl	__aeabi_fcmplt
+ 224              	.LVL26:
+ 225 00aa 28B1     		cbz	r0, .L13
+ 226 00ac 02E0     		b	.L15
+ 227              	.L14:
+  69:PIDControl.c  ****         }
+ 228              		.loc 1 69 0
+ 229 00ae DFF818B0 		ldr	fp, .L19+4
+ 230              	.LVL27:
+ 231 00b2 01E0     		b	.L13
+ 232              	.LVL28:
+ 233              	.L15:
+  72:PIDControl.c  ****         {
+  73:PIDControl.c  ****             output = 0;
+ 234              		.loc 1 73 0
+ 235 00b4 4FF0000B 		mov	fp, #0
+ 236              	.LVL29:
+ 237              	.L13:
+  74:PIDControl.c  ****         }
+  75:PIDControl.c  ****     
+  76:PIDControl.c  ****     previousError = currentError;
+ 238              		.loc 1 76 0
+ 239 00b8 024B     		ldr	r3, .L19
+ 240 00ba 1D62     		str	r5, [r3, #32]	@ float
+  77:PIDControl.c  ****     return output;
+  78:PIDControl.c  **** }
+ 241              		.loc 1 78 0
+ 242 00bc 5846     		mov	r0, fp
+ 243 00be 03B0     		add	sp, sp, #12
+ 244              		.cfi_def_cfa_offset 36
+ 245              		@ sp needed
+ 246 00c0 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 247              	.LVL30:
+ 248              	.L20:
+ 249              		.align	2
+ 250              	.L19:
+ 251 00c4 00000000 		.word	.LANCHOR0
+ 252 00c8 0000C842 		.word	1120403456
+ 253              		.cfi_endproc
+ 254              	.LFE2:
+ 255              		.size	PIDControl_doStep, .-PIDControl_doStep
+ 256              		.section	.text.getSetPoint,"ax",%progbits
+ 257              		.align	2
+ 258              		.global	getSetPoint
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.type	getSetPoint, %function
+ 262              	getSetPoint:
+ 263              	.LFB3:
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 7
+
+
+  79:PIDControl.c  **** 
+  80:PIDControl.c  **** float getSetPoint()
+  81:PIDControl.c  **** {
+ 264              		.loc 1 81 0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268              		@ link register save eliminated.
+  82:PIDControl.c  ****     return setPoint;
+ 269              		.loc 1 82 0
+ 270 0000 014B     		ldr	r3, .L22
+ 271 0002 9869     		ldr	r0, [r3, #24]	@ float
+  83:PIDControl.c  **** }
+ 272              		.loc 1 83 0
+ 273 0004 7047     		bx	lr
+ 274              	.L23:
+ 275 0006 00BF     		.align	2
+ 276              	.L22:
+ 277 0008 00000000 		.word	.LANCHOR0
+ 278              		.cfi_endproc
+ 279              	.LFE3:
+ 280              		.size	getSetPoint, .-getSetPoint
+ 281              		.bss
+ 282              		.align	2
+ 283              		.set	.LANCHOR0,. + 0
+ 284              		.type	Kp, %object
+ 285              		.size	Kp, 4
+ 286              	Kp:
+ 287 0000 00000000 		.space	4
+ 288              		.type	Ki, %object
+ 289              		.size	Ki, 4
+ 290              	Ki:
+ 291 0004 00000000 		.space	4
+ 292              		.type	Kd, %object
+ 293              		.size	Kd, 4
+ 294              	Kd:
+ 295 0008 00000000 		.space	4
+ 296              		.type	integralMax, %object
+ 297              		.size	integralMax, 4
+ 298              	integralMax:
+ 299 000c 00000000 		.space	4
+ 300              		.type	integralMin, %object
+ 301              		.size	integralMin, 4
+ 302              	integralMin:
+ 303 0010 00000000 		.space	4
+ 304              		.type	dt, %object
+ 305              		.size	dt, 4
+ 306              	dt:
+ 307 0014 00000000 		.space	4
+ 308              		.type	setPoint, %object
+ 309              		.size	setPoint, 4
+ 310              	setPoint:
+ 311 0018 00000000 		.space	4
+ 312              		.type	integral, %object
+ 313              		.size	integral, 4
+ 314              	integral:
+ 315 001c 00000000 		.space	4
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 8
+
+
+ 316              		.type	previousError, %object
+ 317              		.size	previousError, 4
+ 318              	previousError:
+ 319 0020 00000000 		.space	4
+ 320              		.text
+ 321              	.Letext0:
+ 322              		.section	.debug_info,"",%progbits
+ 323              	.Ldebug_info0:
+ 324 0000 FD010000 		.4byte	0x1fd
+ 325 0004 0400     		.2byte	0x4
+ 326 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 327 000a 04       		.byte	0x4
+ 328 000b 01       		.uleb128 0x1
+ 329 000c 5E000000 		.4byte	.LASF18
+ 330 0010 0C       		.byte	0xc
+ 331 0011 E6010000 		.4byte	.LASF19
+ 332 0015 67010000 		.4byte	.LASF20
+ 333 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 334 001d 00000000 		.4byte	0
+ 335 0021 00000000 		.4byte	.Ldebug_line0
+ 336 0025 02       		.uleb128 0x2
+ 337 0026 04       		.byte	0x4
+ 338 0027 04       		.byte	0x4
+ 339 0028 E0010000 		.4byte	.LASF21
+ 340 002c 03       		.uleb128 0x3
+ 341 002d 34000000 		.4byte	.LASF2
+ 342 0031 01       		.byte	0x1
+ 343 0032 18       		.byte	0x18
+ 344 0033 00000000 		.4byte	.LFB0
+ 345 0037 1C000000 		.4byte	.LFE0-.LFB0
+ 346 003b 01       		.uleb128 0x1
+ 347 003c 9C       		.byte	0x9c
+ 348 003d 96000000 		.4byte	0x96
+ 349 0041 04       		.uleb128 0x4
+ 350 0042 5F4B7000 		.ascii	"_Kp\000"
+ 351 0046 01       		.byte	0x1
+ 352 0047 18       		.byte	0x18
+ 353 0048 25000000 		.4byte	0x25
+ 354 004c 01       		.uleb128 0x1
+ 355 004d 50       		.byte	0x50
+ 356 004e 04       		.uleb128 0x4
+ 357 004f 5F4B6900 		.ascii	"_Ki\000"
+ 358 0053 01       		.byte	0x1
+ 359 0054 18       		.byte	0x18
+ 360 0055 25000000 		.4byte	0x25
+ 361 0059 01       		.uleb128 0x1
+ 362 005a 51       		.byte	0x51
+ 363 005b 04       		.uleb128 0x4
+ 364 005c 5F4B6400 		.ascii	"_Kd\000"
+ 365 0060 01       		.byte	0x1
+ 366 0061 18       		.byte	0x18
+ 367 0062 25000000 		.4byte	0x25
+ 368 0066 01       		.uleb128 0x1
+ 369 0067 52       		.byte	0x52
+ 370 0068 05       		.uleb128 0x5
+ 371 0069 02010000 		.4byte	.LASF0
+ 372 006d 01       		.byte	0x1
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 9
+
+
+ 373 006e 18       		.byte	0x18
+ 374 006f 25000000 		.4byte	0x25
+ 375 0073 00000000 		.4byte	.LLST0
+ 376 0077 05       		.uleb128 0x5
+ 377 0078 00000000 		.4byte	.LASF1
+ 378 007c 01       		.byte	0x1
+ 379 007d 18       		.byte	0x18
+ 380 007e 25000000 		.4byte	0x25
+ 381 0082 22000000 		.4byte	.LLST1
+ 382 0086 06       		.uleb128 0x6
+ 383 0087 5F647400 		.ascii	"_dt\000"
+ 384 008b 01       		.byte	0x1
+ 385 008c 18       		.byte	0x18
+ 386 008d 25000000 		.4byte	0x25
+ 387 0091 42000000 		.4byte	.LLST2
+ 388 0095 00       		.byte	0
+ 389 0096 03       		.uleb128 0x3
+ 390 0097 44000000 		.4byte	.LASF3
+ 391 009b 01       		.byte	0x1
+ 392 009c 22       		.byte	0x22
+ 393 009d 00000000 		.4byte	.LFB1
+ 394 00a1 0C000000 		.4byte	.LFE1-.LFB1
+ 395 00a5 01       		.uleb128 0x1
+ 396 00a6 9C       		.byte	0x9c
+ 397 00a7 B9000000 		.4byte	0xb9
+ 398 00ab 07       		.uleb128 0x7
+ 399 00ac EC000000 		.4byte	.LASF4
+ 400 00b0 01       		.byte	0x1
+ 401 00b1 22       		.byte	0x22
+ 402 00b2 25000000 		.4byte	0x25
+ 403 00b6 01       		.uleb128 0x1
+ 404 00b7 50       		.byte	0x50
+ 405 00b8 00       		.byte	0
+ 406 00b9 08       		.uleb128 0x8
+ 407 00ba 47010000 		.4byte	.LASF22
+ 408 00be 01       		.byte	0x1
+ 409 00bf 27       		.byte	0x27
+ 410 00c0 25000000 		.4byte	0x25
+ 411 00c4 00000000 		.4byte	.LFB2
+ 412 00c8 CC000000 		.4byte	.LFE2-.LFB2
+ 413 00cc 01       		.uleb128 0x1
+ 414 00cd 9C       		.byte	0x9c
+ 415 00ce 4B010000 		.4byte	0x14b
+ 416 00d2 05       		.uleb128 0x5
+ 417 00d3 F3010000 		.4byte	.LASF5
+ 418 00d7 01       		.byte	0x1
+ 419 00d8 27       		.byte	0x27
+ 420 00d9 25000000 		.4byte	0x25
+ 421 00dd 62000000 		.4byte	.LLST3
+ 422 00e1 05       		.uleb128 0x5
+ 423 00e2 36010000 		.4byte	.LASF6
+ 424 00e6 01       		.byte	0x1
+ 425 00e7 27       		.byte	0x27
+ 426 00e8 4B010000 		.4byte	0x14b
+ 427 00ec 90000000 		.4byte	.LLST4
+ 428 00f0 05       		.uleb128 0x5
+ 429 00f1 29010000 		.4byte	.LASF7
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 10
+
+
+ 430 00f5 01       		.byte	0x1
+ 431 00f6 27       		.byte	0x27
+ 432 00f7 4B010000 		.4byte	0x14b
+ 433 00fb BC000000 		.4byte	.LLST5
+ 434 00ff 05       		.uleb128 0x5
+ 435 0100 C8010000 		.4byte	.LASF8
+ 436 0104 01       		.byte	0x1
+ 437 0105 27       		.byte	0x27
+ 438 0106 4B010000 		.4byte	0x14b
+ 439 010a E8000000 		.4byte	.LLST6
+ 440 010e 09       		.uleb128 0x9
+ 441 010f 0D000000 		.4byte	.LASF9
+ 442 0113 01       		.byte	0x1
+ 443 0114 29       		.byte	0x29
+ 444 0115 25000000 		.4byte	0x25
+ 445 0119 14010000 		.4byte	.LLST7
+ 446 011d 09       		.uleb128 0x9
+ 447 011e 0F010000 		.4byte	.LASF10
+ 448 0122 01       		.byte	0x1
+ 449 0123 2A       		.byte	0x2a
+ 450 0124 25000000 		.4byte	0x25
+ 451 0128 58010000 		.4byte	.LLST8
+ 452 012c 09       		.uleb128 0x9
+ 453 012d 14000000 		.4byte	.LASF11
+ 454 0131 01       		.byte	0x1
+ 455 0132 2B       		.byte	0x2b
+ 456 0133 25000000 		.4byte	0x25
+ 457 0137 95010000 		.4byte	.LLST9
+ 458 013b 09       		.uleb128 0x9
+ 459 013c 1C010000 		.4byte	.LASF12
+ 460 0140 01       		.byte	0x1
+ 461 0141 2C       		.byte	0x2c
+ 462 0142 25000000 		.4byte	0x25
+ 463 0146 58010000 		.4byte	.LLST8
+ 464 014a 00       		.byte	0
+ 465 014b 0A       		.uleb128 0xa
+ 466 014c 04       		.byte	0x4
+ 467 014d 25000000 		.4byte	0x25
+ 468 0151 0B       		.uleb128 0xb
+ 469 0152 28000000 		.4byte	.LASF23
+ 470 0156 01       		.byte	0x1
+ 471 0157 50       		.byte	0x50
+ 472 0158 25000000 		.4byte	0x25
+ 473 015c 00000000 		.4byte	.LFB3
+ 474 0160 0C000000 		.4byte	.LFE3-.LFB3
+ 475 0164 01       		.uleb128 0x1
+ 476 0165 9C       		.byte	0x9c
+ 477 0166 0C       		.uleb128 0xc
+ 478 0167 4B7000   		.ascii	"Kp\000"
+ 479 016a 01       		.byte	0x1
+ 480 016b 0E       		.byte	0xe
+ 481 016c 25000000 		.4byte	0x25
+ 482 0170 05       		.uleb128 0x5
+ 483 0171 03       		.byte	0x3
+ 484 0172 00000000 		.4byte	Kp
+ 485 0176 0C       		.uleb128 0xc
+ 486 0177 4B6900   		.ascii	"Ki\000"
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 11
+
+
+ 487 017a 01       		.byte	0x1
+ 488 017b 0F       		.byte	0xf
+ 489 017c 25000000 		.4byte	0x25
+ 490 0180 05       		.uleb128 0x5
+ 491 0181 03       		.byte	0x3
+ 492 0182 04000000 		.4byte	Ki
+ 493 0186 0C       		.uleb128 0xc
+ 494 0187 4B6400   		.ascii	"Kd\000"
+ 495 018a 01       		.byte	0x1
+ 496 018b 10       		.byte	0x10
+ 497 018c 25000000 		.4byte	0x25
+ 498 0190 05       		.uleb128 0x5
+ 499 0191 03       		.byte	0x3
+ 500 0192 08000000 		.4byte	Kd
+ 501 0196 0C       		.uleb128 0xc
+ 502 0197 647400   		.ascii	"dt\000"
+ 503 019a 01       		.byte	0x1
+ 504 019b 11       		.byte	0x11
+ 505 019c 25000000 		.4byte	0x25
+ 506 01a0 05       		.uleb128 0x5
+ 507 01a1 03       		.byte	0x3
+ 508 01a2 14000000 		.4byte	dt
+ 509 01a6 0D       		.uleb128 0xd
+ 510 01a7 BC010000 		.4byte	.LASF13
+ 511 01ab 01       		.byte	0x1
+ 512 01ac 12       		.byte	0x12
+ 513 01ad 25000000 		.4byte	0x25
+ 514 01b1 05       		.uleb128 0x5
+ 515 01b2 03       		.byte	0x3
+ 516 01b3 0C000000 		.4byte	integralMax
+ 517 01b7 0D       		.uleb128 0xd
+ 518 01b8 F6000000 		.4byte	.LASF14
+ 519 01bc 01       		.byte	0x1
+ 520 01bd 13       		.byte	0x13
+ 521 01be 25000000 		.4byte	0x25
+ 522 01c2 05       		.uleb128 0x5
+ 523 01c3 03       		.byte	0x3
+ 524 01c4 10000000 		.4byte	integralMin
+ 525 01c8 0D       		.uleb128 0xd
+ 526 01c9 D7010000 		.4byte	.LASF15
+ 527 01cd 01       		.byte	0x1
+ 528 01ce 14       		.byte	0x14
+ 529 01cf D9010000 		.4byte	0x1d9
+ 530 01d3 05       		.uleb128 0x5
+ 531 01d4 03       		.byte	0x3
+ 532 01d5 18000000 		.4byte	setPoint
+ 533 01d9 0E       		.uleb128 0xe
+ 534 01da 25000000 		.4byte	0x25
+ 535 01de 0D       		.uleb128 0xd
+ 536 01df 1F000000 		.4byte	.LASF16
+ 537 01e3 01       		.byte	0x1
+ 538 01e4 15       		.byte	0x15
+ 539 01e5 25000000 		.4byte	0x25
+ 540 01e9 05       		.uleb128 0x5
+ 541 01ea 03       		.byte	0x3
+ 542 01eb 1C000000 		.4byte	integral
+ 543 01ef 0D       		.uleb128 0xd
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 12
+
+
+ 544 01f0 59010000 		.4byte	.LASF17
+ 545 01f4 01       		.byte	0x1
+ 546 01f5 16       		.byte	0x16
+ 547 01f6 25000000 		.4byte	0x25
+ 548 01fa 05       		.uleb128 0x5
+ 549 01fb 03       		.byte	0x3
+ 550 01fc 20000000 		.4byte	previousError
+ 551 0200 00       		.byte	0
+ 552              		.section	.debug_abbrev,"",%progbits
+ 553              	.Ldebug_abbrev0:
+ 554 0000 01       		.uleb128 0x1
+ 555 0001 11       		.uleb128 0x11
+ 556 0002 01       		.byte	0x1
+ 557 0003 25       		.uleb128 0x25
+ 558 0004 0E       		.uleb128 0xe
+ 559 0005 13       		.uleb128 0x13
+ 560 0006 0B       		.uleb128 0xb
+ 561 0007 03       		.uleb128 0x3
+ 562 0008 0E       		.uleb128 0xe
+ 563 0009 1B       		.uleb128 0x1b
+ 564 000a 0E       		.uleb128 0xe
+ 565 000b 55       		.uleb128 0x55
+ 566 000c 17       		.uleb128 0x17
+ 567 000d 11       		.uleb128 0x11
+ 568 000e 01       		.uleb128 0x1
+ 569 000f 10       		.uleb128 0x10
+ 570 0010 17       		.uleb128 0x17
+ 571 0011 00       		.byte	0
+ 572 0012 00       		.byte	0
+ 573 0013 02       		.uleb128 0x2
+ 574 0014 24       		.uleb128 0x24
+ 575 0015 00       		.byte	0
+ 576 0016 0B       		.uleb128 0xb
+ 577 0017 0B       		.uleb128 0xb
+ 578 0018 3E       		.uleb128 0x3e
+ 579 0019 0B       		.uleb128 0xb
+ 580 001a 03       		.uleb128 0x3
+ 581 001b 0E       		.uleb128 0xe
+ 582 001c 00       		.byte	0
+ 583 001d 00       		.byte	0
+ 584 001e 03       		.uleb128 0x3
+ 585 001f 2E       		.uleb128 0x2e
+ 586 0020 01       		.byte	0x1
+ 587 0021 3F       		.uleb128 0x3f
+ 588 0022 19       		.uleb128 0x19
+ 589 0023 03       		.uleb128 0x3
+ 590 0024 0E       		.uleb128 0xe
+ 591 0025 3A       		.uleb128 0x3a
+ 592 0026 0B       		.uleb128 0xb
+ 593 0027 3B       		.uleb128 0x3b
+ 594 0028 0B       		.uleb128 0xb
+ 595 0029 27       		.uleb128 0x27
+ 596 002a 19       		.uleb128 0x19
+ 597 002b 11       		.uleb128 0x11
+ 598 002c 01       		.uleb128 0x1
+ 599 002d 12       		.uleb128 0x12
+ 600 002e 06       		.uleb128 0x6
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 13
+
+
+ 601 002f 40       		.uleb128 0x40
+ 602 0030 18       		.uleb128 0x18
+ 603 0031 9742     		.uleb128 0x2117
+ 604 0033 19       		.uleb128 0x19
+ 605 0034 01       		.uleb128 0x1
+ 606 0035 13       		.uleb128 0x13
+ 607 0036 00       		.byte	0
+ 608 0037 00       		.byte	0
+ 609 0038 04       		.uleb128 0x4
+ 610 0039 05       		.uleb128 0x5
+ 611 003a 00       		.byte	0
+ 612 003b 03       		.uleb128 0x3
+ 613 003c 08       		.uleb128 0x8
+ 614 003d 3A       		.uleb128 0x3a
+ 615 003e 0B       		.uleb128 0xb
+ 616 003f 3B       		.uleb128 0x3b
+ 617 0040 0B       		.uleb128 0xb
+ 618 0041 49       		.uleb128 0x49
+ 619 0042 13       		.uleb128 0x13
+ 620 0043 02       		.uleb128 0x2
+ 621 0044 18       		.uleb128 0x18
+ 622 0045 00       		.byte	0
+ 623 0046 00       		.byte	0
+ 624 0047 05       		.uleb128 0x5
+ 625 0048 05       		.uleb128 0x5
+ 626 0049 00       		.byte	0
+ 627 004a 03       		.uleb128 0x3
+ 628 004b 0E       		.uleb128 0xe
+ 629 004c 3A       		.uleb128 0x3a
+ 630 004d 0B       		.uleb128 0xb
+ 631 004e 3B       		.uleb128 0x3b
+ 632 004f 0B       		.uleb128 0xb
+ 633 0050 49       		.uleb128 0x49
+ 634 0051 13       		.uleb128 0x13
+ 635 0052 02       		.uleb128 0x2
+ 636 0053 17       		.uleb128 0x17
+ 637 0054 00       		.byte	0
+ 638 0055 00       		.byte	0
+ 639 0056 06       		.uleb128 0x6
+ 640 0057 05       		.uleb128 0x5
+ 641 0058 00       		.byte	0
+ 642 0059 03       		.uleb128 0x3
+ 643 005a 08       		.uleb128 0x8
+ 644 005b 3A       		.uleb128 0x3a
+ 645 005c 0B       		.uleb128 0xb
+ 646 005d 3B       		.uleb128 0x3b
+ 647 005e 0B       		.uleb128 0xb
+ 648 005f 49       		.uleb128 0x49
+ 649 0060 13       		.uleb128 0x13
+ 650 0061 02       		.uleb128 0x2
+ 651 0062 17       		.uleb128 0x17
+ 652 0063 00       		.byte	0
+ 653 0064 00       		.byte	0
+ 654 0065 07       		.uleb128 0x7
+ 655 0066 05       		.uleb128 0x5
+ 656 0067 00       		.byte	0
+ 657 0068 03       		.uleb128 0x3
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 14
+
+
+ 658 0069 0E       		.uleb128 0xe
+ 659 006a 3A       		.uleb128 0x3a
+ 660 006b 0B       		.uleb128 0xb
+ 661 006c 3B       		.uleb128 0x3b
+ 662 006d 0B       		.uleb128 0xb
+ 663 006e 49       		.uleb128 0x49
+ 664 006f 13       		.uleb128 0x13
+ 665 0070 02       		.uleb128 0x2
+ 666 0071 18       		.uleb128 0x18
+ 667 0072 00       		.byte	0
+ 668 0073 00       		.byte	0
+ 669 0074 08       		.uleb128 0x8
+ 670 0075 2E       		.uleb128 0x2e
+ 671 0076 01       		.byte	0x1
+ 672 0077 3F       		.uleb128 0x3f
+ 673 0078 19       		.uleb128 0x19
+ 674 0079 03       		.uleb128 0x3
+ 675 007a 0E       		.uleb128 0xe
+ 676 007b 3A       		.uleb128 0x3a
+ 677 007c 0B       		.uleb128 0xb
+ 678 007d 3B       		.uleb128 0x3b
+ 679 007e 0B       		.uleb128 0xb
+ 680 007f 27       		.uleb128 0x27
+ 681 0080 19       		.uleb128 0x19
+ 682 0081 49       		.uleb128 0x49
+ 683 0082 13       		.uleb128 0x13
+ 684 0083 11       		.uleb128 0x11
+ 685 0084 01       		.uleb128 0x1
+ 686 0085 12       		.uleb128 0x12
+ 687 0086 06       		.uleb128 0x6
+ 688 0087 40       		.uleb128 0x40
+ 689 0088 18       		.uleb128 0x18
+ 690 0089 9642     		.uleb128 0x2116
+ 691 008b 19       		.uleb128 0x19
+ 692 008c 01       		.uleb128 0x1
+ 693 008d 13       		.uleb128 0x13
+ 694 008e 00       		.byte	0
+ 695 008f 00       		.byte	0
+ 696 0090 09       		.uleb128 0x9
+ 697 0091 34       		.uleb128 0x34
+ 698 0092 00       		.byte	0
+ 699 0093 03       		.uleb128 0x3
+ 700 0094 0E       		.uleb128 0xe
+ 701 0095 3A       		.uleb128 0x3a
+ 702 0096 0B       		.uleb128 0xb
+ 703 0097 3B       		.uleb128 0x3b
+ 704 0098 0B       		.uleb128 0xb
+ 705 0099 49       		.uleb128 0x49
+ 706 009a 13       		.uleb128 0x13
+ 707 009b 02       		.uleb128 0x2
+ 708 009c 17       		.uleb128 0x17
+ 709 009d 00       		.byte	0
+ 710 009e 00       		.byte	0
+ 711 009f 0A       		.uleb128 0xa
+ 712 00a0 0F       		.uleb128 0xf
+ 713 00a1 00       		.byte	0
+ 714 00a2 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 15
+
+
+ 715 00a3 0B       		.uleb128 0xb
+ 716 00a4 49       		.uleb128 0x49
+ 717 00a5 13       		.uleb128 0x13
+ 718 00a6 00       		.byte	0
+ 719 00a7 00       		.byte	0
+ 720 00a8 0B       		.uleb128 0xb
+ 721 00a9 2E       		.uleb128 0x2e
+ 722 00aa 00       		.byte	0
+ 723 00ab 3F       		.uleb128 0x3f
+ 724 00ac 19       		.uleb128 0x19
+ 725 00ad 03       		.uleb128 0x3
+ 726 00ae 0E       		.uleb128 0xe
+ 727 00af 3A       		.uleb128 0x3a
+ 728 00b0 0B       		.uleb128 0xb
+ 729 00b1 3B       		.uleb128 0x3b
+ 730 00b2 0B       		.uleb128 0xb
+ 731 00b3 49       		.uleb128 0x49
+ 732 00b4 13       		.uleb128 0x13
+ 733 00b5 11       		.uleb128 0x11
+ 734 00b6 01       		.uleb128 0x1
+ 735 00b7 12       		.uleb128 0x12
+ 736 00b8 06       		.uleb128 0x6
+ 737 00b9 40       		.uleb128 0x40
+ 738 00ba 18       		.uleb128 0x18
+ 739 00bb 9742     		.uleb128 0x2117
+ 740 00bd 19       		.uleb128 0x19
+ 741 00be 00       		.byte	0
+ 742 00bf 00       		.byte	0
+ 743 00c0 0C       		.uleb128 0xc
+ 744 00c1 34       		.uleb128 0x34
+ 745 00c2 00       		.byte	0
+ 746 00c3 03       		.uleb128 0x3
+ 747 00c4 08       		.uleb128 0x8
+ 748 00c5 3A       		.uleb128 0x3a
+ 749 00c6 0B       		.uleb128 0xb
+ 750 00c7 3B       		.uleb128 0x3b
+ 751 00c8 0B       		.uleb128 0xb
+ 752 00c9 49       		.uleb128 0x49
+ 753 00ca 13       		.uleb128 0x13
+ 754 00cb 02       		.uleb128 0x2
+ 755 00cc 18       		.uleb128 0x18
+ 756 00cd 00       		.byte	0
+ 757 00ce 00       		.byte	0
+ 758 00cf 0D       		.uleb128 0xd
+ 759 00d0 34       		.uleb128 0x34
+ 760 00d1 00       		.byte	0
+ 761 00d2 03       		.uleb128 0x3
+ 762 00d3 0E       		.uleb128 0xe
+ 763 00d4 3A       		.uleb128 0x3a
+ 764 00d5 0B       		.uleb128 0xb
+ 765 00d6 3B       		.uleb128 0x3b
+ 766 00d7 0B       		.uleb128 0xb
+ 767 00d8 49       		.uleb128 0x49
+ 768 00d9 13       		.uleb128 0x13
+ 769 00da 02       		.uleb128 0x2
+ 770 00db 18       		.uleb128 0x18
+ 771 00dc 00       		.byte	0
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 16
+
+
+ 772 00dd 00       		.byte	0
+ 773 00de 0E       		.uleb128 0xe
+ 774 00df 35       		.uleb128 0x35
+ 775 00e0 00       		.byte	0
+ 776 00e1 49       		.uleb128 0x49
+ 777 00e2 13       		.uleb128 0x13
+ 778 00e3 00       		.byte	0
+ 779 00e4 00       		.byte	0
+ 780 00e5 00       		.byte	0
+ 781              		.section	.debug_loc,"",%progbits
+ 782              	.Ldebug_loc0:
+ 783              	.LLST0:
+ 784 0000 00000000 		.4byte	.LVL0
+ 785 0004 0E000000 		.4byte	.LVL1
+ 786 0008 0100     		.2byte	0x1
+ 787 000a 53       		.byte	0x53
+ 788 000b 0E000000 		.4byte	.LVL1
+ 789 000f 1C000000 		.4byte	.LFE0
+ 790 0013 0500     		.2byte	0x5
+ 791 0015 03       		.byte	0x3
+ 792 0016 0C000000 		.4byte	integralMax
+ 793 001a 00000000 		.4byte	0
+ 794 001e 00000000 		.4byte	0
+ 795              	.LLST1:
+ 796 0022 00000000 		.4byte	.LVL0
+ 797 0026 16000000 		.4byte	.LVL2
+ 798 002a 0200     		.2byte	0x2
+ 799 002c 91       		.byte	0x91
+ 800 002d 00       		.sleb128 0
+ 801 002e 16000000 		.4byte	.LVL2
+ 802 0032 1C000000 		.4byte	.LFE0
+ 803 0036 0200     		.2byte	0x2
+ 804 0038 7D       		.byte	0x7d
+ 805 0039 00       		.sleb128 0
+ 806 003a 00000000 		.4byte	0
+ 807 003e 00000000 		.4byte	0
+ 808              	.LLST2:
+ 809 0042 00000000 		.4byte	.LVL0
+ 810 0046 16000000 		.4byte	.LVL2
+ 811 004a 0200     		.2byte	0x2
+ 812 004c 91       		.byte	0x91
+ 813 004d 04       		.sleb128 4
+ 814 004e 16000000 		.4byte	.LVL2
+ 815 0052 1C000000 		.4byte	.LFE0
+ 816 0056 0200     		.2byte	0x2
+ 817 0058 7D       		.byte	0x7d
+ 818 0059 04       		.sleb128 4
+ 819 005a 00000000 		.4byte	0
+ 820 005e 00000000 		.4byte	0
+ 821              	.LLST3:
+ 822 0062 00000000 		.4byte	.LVL4
+ 823 0066 14000000 		.4byte	.LVL8
+ 824 006a 0100     		.2byte	0x1
+ 825 006c 50       		.byte	0x50
+ 826 006d 14000000 		.4byte	.LVL8
+ 827 0071 17000000 		.4byte	.LVL9-1
+ 828 0075 0100     		.2byte	0x1
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 17
+
+
+ 829 0077 51       		.byte	0x51
+ 830 0078 17000000 		.4byte	.LVL9-1
+ 831 007c CC000000 		.4byte	.LFE2
+ 832 0080 0600     		.2byte	0x6
+ 833 0082 F3       		.byte	0xf3
+ 834 0083 03       		.uleb128 0x3
+ 835 0084 F5       		.byte	0xf5
+ 836 0085 00       		.uleb128 0
+ 837 0086 25       		.uleb128 0x25
+ 838 0087 9F       		.byte	0x9f
+ 839 0088 00000000 		.4byte	0
+ 840 008c 00000000 		.4byte	0
+ 841              	.LLST4:
+ 842 0090 00000000 		.4byte	.LVL4
+ 843 0094 12000000 		.4byte	.LVL7
+ 844 0098 0100     		.2byte	0x1
+ 845 009a 51       		.byte	0x51
+ 846 009b 12000000 		.4byte	.LVL7
+ 847 009f C4000000 		.4byte	.LVL30
+ 848 00a3 0100     		.2byte	0x1
+ 849 00a5 5A       		.byte	0x5a
+ 850 00a6 C4000000 		.4byte	.LVL30
+ 851 00aa CC000000 		.4byte	.LFE2
+ 852 00ae 0400     		.2byte	0x4
+ 853 00b0 F3       		.byte	0xf3
+ 854 00b1 01       		.uleb128 0x1
+ 855 00b2 51       		.byte	0x51
+ 856 00b3 9F       		.byte	0x9f
+ 857 00b4 00000000 		.4byte	0
+ 858 00b8 00000000 		.4byte	0
+ 859              	.LLST5:
+ 860 00bc 00000000 		.4byte	.LVL4
+ 861 00c0 17000000 		.4byte	.LVL9-1
+ 862 00c4 0100     		.2byte	0x1
+ 863 00c6 52       		.byte	0x52
+ 864 00c7 17000000 		.4byte	.LVL9-1
+ 865 00cb C4000000 		.4byte	.LVL30
+ 866 00cf 0100     		.2byte	0x1
+ 867 00d1 59       		.byte	0x59
+ 868 00d2 C4000000 		.4byte	.LVL30
+ 869 00d6 CC000000 		.4byte	.LFE2
+ 870 00da 0400     		.2byte	0x4
+ 871 00dc F3       		.byte	0xf3
+ 872 00dd 01       		.uleb128 0x1
+ 873 00de 52       		.byte	0x52
+ 874 00df 9F       		.byte	0x9f
+ 875 00e0 00000000 		.4byte	0
+ 876 00e4 00000000 		.4byte	0
+ 877              	.LLST6:
+ 878 00e8 00000000 		.4byte	.LVL4
+ 879 00ec 10000000 		.4byte	.LVL6
+ 880 00f0 0100     		.2byte	0x1
+ 881 00f2 53       		.byte	0x53
+ 882 00f3 10000000 		.4byte	.LVL6
+ 883 00f7 C4000000 		.4byte	.LVL30
+ 884 00fb 0100     		.2byte	0x1
+ 885 00fd 58       		.byte	0x58
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 18
+
+
+ 886 00fe C4000000 		.4byte	.LVL30
+ 887 0102 CC000000 		.4byte	.LFE2
+ 888 0106 0400     		.2byte	0x4
+ 889 0108 F3       		.byte	0xf3
+ 890 0109 01       		.uleb128 0x1
+ 891 010a 53       		.byte	0x53
+ 892 010b 9F       		.byte	0x9f
+ 893 010c 00000000 		.4byte	0
+ 894 0110 00000000 		.4byte	0
+ 895              	.LLST7:
+ 896 0114 0C000000 		.4byte	.LVL5
+ 897 0118 8E000000 		.4byte	.LVL24
+ 898 011c 0600     		.2byte	0x6
+ 899 011e 9E       		.byte	0x9e
+ 900 011f 04       		.uleb128 0x4
+ 901 0120 00000000 		.4byte	0
+ 902 0124 8E000000 		.4byte	.LVL24
+ 903 0128 9F000000 		.4byte	.LVL25-1
+ 904 012c 0100     		.2byte	0x1
+ 905 012e 50       		.byte	0x50
+ 906 012f 9F000000 		.4byte	.LVL25-1
+ 907 0133 B2000000 		.4byte	.LVL27
+ 908 0137 0100     		.2byte	0x1
+ 909 0139 5B       		.byte	0x5b
+ 910 013a B4000000 		.4byte	.LVL28
+ 911 013e C4000000 		.4byte	.LVL30
+ 912 0142 0100     		.2byte	0x1
+ 913 0144 5B       		.byte	0x5b
+ 914 0145 C4000000 		.4byte	.LVL30
+ 915 0149 CC000000 		.4byte	.LFE2
+ 916 014d 0100     		.2byte	0x1
+ 917 014f 50       		.byte	0x50
+ 918 0150 00000000 		.4byte	0
+ 919 0154 00000000 		.4byte	0
+ 920              	.LLST8:
+ 921 0158 0C000000 		.4byte	.LVL5
+ 922 015c 1A000000 		.4byte	.LVL10
+ 923 0160 0600     		.2byte	0x6
+ 924 0162 9E       		.byte	0x9e
+ 925 0163 04       		.uleb128 0x4
+ 926 0164 00000000 		.4byte	0
+ 927 0168 1A000000 		.4byte	.LVL10
+ 928 016c 21000000 		.4byte	.LVL11-1
+ 929 0170 0100     		.2byte	0x1
+ 930 0172 50       		.byte	0x50
+ 931 0173 21000000 		.4byte	.LVL11-1
+ 932 0177 C4000000 		.4byte	.LVL30
+ 933 017b 0100     		.2byte	0x1
+ 934 017d 55       		.byte	0x55
+ 935 017e C4000000 		.4byte	.LVL30
+ 936 0182 CC000000 		.4byte	.LFE2
+ 937 0186 0500     		.2byte	0x5
+ 938 0188 03       		.byte	0x3
+ 939 0189 20000000 		.4byte	previousError
+ 940 018d 00000000 		.4byte	0
+ 941 0191 00000000 		.4byte	0
+ 942              	.LLST9:
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 19
+
+
+ 943 0195 0C000000 		.4byte	.LVL5
+ 944 0199 5C000000 		.4byte	.LVL17
+ 945 019d 0600     		.2byte	0x6
+ 946 019f 9E       		.byte	0x9e
+ 947 01a0 04       		.uleb128 0x4
+ 948 01a1 00000000 		.4byte	0
+ 949 01a5 5C000000 		.4byte	.LVL17
+ 950 01a9 60000000 		.4byte	.LVL18
+ 951 01ad 0100     		.2byte	0x1
+ 952 01af 50       		.byte	0x50
+ 953 01b0 60000000 		.4byte	.LVL18
+ 954 01b4 8E000000 		.4byte	.LVL24
+ 955 01b8 0100     		.2byte	0x1
+ 956 01ba 5B       		.byte	0x5b
+ 957 01bb 00000000 		.4byte	0
+ 958 01bf 00000000 		.4byte	0
+ 959              		.section	.debug_aranges,"",%progbits
+ 960 0000 34000000 		.4byte	0x34
+ 961 0004 0200     		.2byte	0x2
+ 962 0006 00000000 		.4byte	.Ldebug_info0
+ 963 000a 04       		.byte	0x4
+ 964 000b 00       		.byte	0
+ 965 000c 0000     		.2byte	0
+ 966 000e 0000     		.2byte	0
+ 967 0010 00000000 		.4byte	.LFB0
+ 968 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 969 0018 00000000 		.4byte	.LFB1
+ 970 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 971 0020 00000000 		.4byte	.LFB2
+ 972 0024 CC000000 		.4byte	.LFE2-.LFB2
+ 973 0028 00000000 		.4byte	.LFB3
+ 974 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 975 0030 00000000 		.4byte	0
+ 976 0034 00000000 		.4byte	0
+ 977              		.section	.debug_ranges,"",%progbits
+ 978              	.Ldebug_ranges0:
+ 979 0000 00000000 		.4byte	.LFB0
+ 980 0004 1C000000 		.4byte	.LFE0
+ 981 0008 00000000 		.4byte	.LFB1
+ 982 000c 0C000000 		.4byte	.LFE1
+ 983 0010 00000000 		.4byte	.LFB2
+ 984 0014 CC000000 		.4byte	.LFE2
+ 985 0018 00000000 		.4byte	.LFB3
+ 986 001c 0C000000 		.4byte	.LFE3
+ 987 0020 00000000 		.4byte	0
+ 988 0024 00000000 		.4byte	0
+ 989              		.section	.debug_line,"",%progbits
+ 990              	.Ldebug_line0:
+ 991 0000 8E000000 		.section	.debug_str,"MS",%progbits,1
+ 991      02002300 
+ 991      00000201 
+ 991      FB0E0D00 
+ 991      01010101 
+ 992              	.LASF1:
+ 993 0000 5F696E74 		.ascii	"_integralMin\000"
+ 993      65677261 
+ 993      6C4D696E 
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 20
+
+
+ 993      00
+ 994              	.LASF9:
+ 995 000d 6F757470 		.ascii	"output\000"
+ 995      757400
+ 996              	.LASF11:
+ 997 0014 64657269 		.ascii	"derivative\000"
+ 997      76617469 
+ 997      766500
+ 998              	.LASF16:
+ 999 001f 696E7465 		.ascii	"integral\000"
+ 999      6772616C 
+ 999      00
+ 1000              	.LASF23:
+ 1001 0028 67657453 		.ascii	"getSetPoint\000"
+ 1001      6574506F 
+ 1001      696E7400 
+ 1002              	.LASF2:
+ 1003 0034 50494443 		.ascii	"PIDControl_init\000"
+ 1003      6F6E7472 
+ 1003      6F6C5F69 
+ 1003      6E697400 
+ 1004              	.LASF3:
+ 1005 0044 50494443 		.ascii	"PIDControl_changeSetPoint\000"
+ 1005      6F6E7472 
+ 1005      6F6C5F63 
+ 1005      68616E67 
+ 1005      65536574 
+ 1006              	.LASF18:
+ 1007 005e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1007      43313120 
+ 1007      352E342E 
+ 1007      31203230 
+ 1007      31363036 
+ 1008 0091 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1008      20726576 
+ 1008      6973696F 
+ 1008      6E203233 
+ 1008      37373135 
+ 1009 00c4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1009      66756E63 
+ 1009      74696F6E 
+ 1009      2D736563 
+ 1009      74696F6E 
+ 1010              	.LASF4:
+ 1011 00ec 5F736574 		.ascii	"_setPoint\000"
+ 1011      506F696E 
+ 1011      7400
+ 1012              	.LASF14:
+ 1013 00f6 696E7465 		.ascii	"integralMin\000"
+ 1013      6772616C 
+ 1013      4D696E00 
+ 1014              	.LASF0:
+ 1015 0102 5F696E74 		.ascii	"_integralMax\000"
+ 1015      65677261 
+ 1015      6C4D6178 
+ 1015      00
+ 1016              	.LASF10:
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 21
+
+
+ 1017 010f 70726F70 		.ascii	"proportional\000"
+ 1017      6F727469 
+ 1017      6F6E616C 
+ 1017      00
+ 1018              	.LASF12:
+ 1019 011c 63757272 		.ascii	"currentError\000"
+ 1019      656E7445 
+ 1019      72726F72 
+ 1019      00
+ 1020              	.LASF7:
+ 1021 0129 696E7465 		.ascii	"integralPart\000"
+ 1021      6772616C 
+ 1021      50617274 
+ 1021      00
+ 1022              	.LASF6:
+ 1023 0136 70726F70 		.ascii	"proportionalPart\000"
+ 1023      6F727469 
+ 1023      6F6E616C 
+ 1023      50617274 
+ 1023      00
+ 1024              	.LASF22:
+ 1025 0147 50494443 		.ascii	"PIDControl_doStep\000"
+ 1025      6F6E7472 
+ 1025      6F6C5F64 
+ 1025      6F537465 
+ 1025      7000
+ 1026              	.LASF17:
+ 1027 0159 70726576 		.ascii	"previousError\000"
+ 1027      696F7573 
+ 1027      4572726F 
+ 1027      7200
+ 1028              	.LASF20:
+ 1029 0167 433A5C55 		.ascii	"C:\\Users\\Abdallah Ajjawi\\Desktop\\TemperatureCon"
+ 1029      73657273 
+ 1029      5C416264 
+ 1029      616C6C61 
+ 1029      6820416A 
+ 1030 0196 74726F6C 		.ascii	"trolHandout\\Temperature-Control.cydsn\000"
+ 1030      48616E64 
+ 1030      6F75745C 
+ 1030      54656D70 
+ 1030      65726174 
+ 1031              	.LASF13:
+ 1032 01bc 696E7465 		.ascii	"integralMax\000"
+ 1032      6772616C 
+ 1032      4D617800 
+ 1033              	.LASF8:
+ 1034 01c8 64657269 		.ascii	"derivativePart\000"
+ 1034      76617469 
+ 1034      76655061 
+ 1034      727400
+ 1035              	.LASF15:
+ 1036 01d7 73657450 		.ascii	"setPoint\000"
+ 1036      6F696E74 
+ 1036      00
+ 1037              	.LASF21:
+ 1038 01e0 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\ABDALL~1\AppData\Local\Temp\ccYxGqQj.s 			page 22
+
+
+ 1038      7400
+ 1039              	.LASF19:
+ 1040 01e6 50494443 		.ascii	"PIDControl.c\000"
+ 1040      6F6E7472 
+ 1040      6F6C2E63 
+ 1040      00
+ 1041              	.LASF5:
+ 1042 01f3 73797374 		.ascii	"systemOutput\000"
+ 1042      656D4F75 
+ 1042      74707574 
+ 1042      00
+ 1043              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
