@@ -1,0 +1,6 @@
+C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\Scale.cyprj|6b81d8e9-4b6b-4244-aa7a-0dd59cca3b18
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|1620faef-bdd4-40a3-997a-64ac81944b5c
+C:\Users\Ali\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|bc7e7afe-daf0-4901-b913-54ec996bb10d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|92497bbf-b964-45fb-9e13-7e992c4361dc
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|c9744ed6-ff82-4812-82a1-9360dba90051
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|d9f58269-4632-4465-953a-25b627fc255a
