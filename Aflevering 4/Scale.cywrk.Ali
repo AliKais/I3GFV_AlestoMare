@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Scale\Scale\Source Files\measure.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Scale\Scale\TopDesign">
 <ExpandedNodeIds>
 <v>Scale</v>
 <v>Scale\Scale</v>
@@ -224,10 +224,6 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Scale.cydsn\main.c" />
-<name v=".\Scale.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Scale.cydsn\Scale.cydwr" />
-<name v=".\Scale.cydsn\measure.h" />
 <name v=".\Scale.cydsn\measure.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
@@ -236,7 +232,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1380, 590" SelectedTabbedMdiWindow="c893f2c0-8fdf-4961-87ea-44b40ee03051"><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\main.c" Guid="b8a1739b-1bb7-44a2-81d5-179c9f051d36" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\TopDesign\TopDesign.cysch" Guid="e59bede8-875f-482f-a965-ceeec2173ab9" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\Scale.cydwr" Guid="216f1bfb-8785-46a1-89fe-7ff99a0dd89c" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\measure.h" Guid="5308e6d8-71d9-4f37-9ffe-92f3367fa7a6" /><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\measure.c" Guid="c893f2c0-8fdf-4961-87ea-44b40ee03051" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1380, 590" SelectedTabbedMdiWindow="252e7e7f-0d57-4d6a-86ca-4a9053821d12"><DocumentWindow Key="C:\Users\Ali\Documents\developmentFolders\GitHub\I3GFV_AlestoMare\Aflevering 4\Scale.cydsn\measure.c" Guid="252e7e7f-0d57-4d6a-86ca-4a9053821d12" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
