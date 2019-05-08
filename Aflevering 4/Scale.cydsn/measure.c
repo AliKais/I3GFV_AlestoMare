@@ -1,13 +1,8 @@
 #include "measure.h"
 
 char uartBuffer[256];
-int measureBool = 0;
 int measureValue = 0;
 
-
-void set(int x){
-    measureBool = x;
-}
 
 void uartADCinit(){
            

@@ -45,19 +45,16 @@ void handleByteReceived(uint8_t byteReceived)
     {
         case 'q' :
         {
-            set(1);
         }
         break;
         
         case 'w' :
         {
-            set(0);
         }
         break;
         
         default :
         {
-            // nothing
         }
         break;
     }

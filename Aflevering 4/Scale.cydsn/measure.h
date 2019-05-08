@@ -5,4 +5,3 @@
 
 void uartADCinit();
 void measure();
-void set(int x);
